@@ -3,7 +3,6 @@ package com.skeleton.springboot;
 import org.apache.catalina.Context;
 import org.apache.catalina.connector.Connector;
 import org.apache.coyote.http11.Http11NioProtocol;
-import org.glassfish.jersey.server.ResourceConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,17 +12,9 @@ import org.springframework.boot.context.embedded.tomcat.TomcatContextCustomizer;
 import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 @SpringBootApplication
 public class SkeletonProjectApplication extends SpringBootServletInitializer {
-
-	
-	@Autowired
-	private JerseyProperties jersey;
-
-	@Autowired
-	private ResourceConfig config;
 
 	public static void main(String[] args) {
         SpringApplication.run(SkeletonProjectApplication.class, args);
@@ -34,7 +25,7 @@ public class SkeletonProjectApplication extends SpringBootServletInitializer {
         TomcatEmbeddedServletContainerFactory tomcat = new TomcatEmbeddedServletContainerFactory();
         tomcat.addAdditionalTomcatConnectors(createSslConnector());
         tomcat.addContextCustomizers(getWelcomePage());
-        tomcat.setPort(7002);
+        tomcat.setPort(7001);
         return tomcat;
     }
 
@@ -43,7 +34,7 @@ public class SkeletonProjectApplication extends SpringBootServletInitializer {
         Http11NioProtocol protocol = (Http11NioProtocol) connector.getProtocolHandler();
             connector.setScheme("http");
             connector.setSecure(false);
-            connector.setPort(7003);
+            connector.setPort(7000);
             protocol.setMinSpareThreads(10);
             return connector;
     }
@@ -56,5 +47,4 @@ public class SkeletonProjectApplication extends SpringBootServletInitializer {
 	        }
 	    };
     }
-    
 }

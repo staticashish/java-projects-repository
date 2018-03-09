@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.skeleton</groupId>
-	<artifactId>skeleton-project</artifactId>
+	<artifactId>skeleton-project-spring-rest</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>Skeleton-Project</name>
+	<name>Skeleton-Project-Spring-Rest</name>
 	<description>Demo project for Spring Boot</description>
 
 	<parent>
@@ -30,72 +30,45 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-websocket</artifactId>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.springframework/spring-web -->
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-jersey</artifactId>
-		</dependency>
-		<!-- <dependency> <groupId>org.apache.derby</groupId> <artifactId>derby</artifactId> 
-			<scope>runtime</scope> </dependency> -->
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-rest</artifactId>
-		</dependency>
+		<!-- <dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-data-rest</artifactId> 
+			</dependency> -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
+
+		<!-- MySql DB [Start] -->
 		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-jpamodelgen</artifactId>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-webmvc-portlet</artifactId>
-		</dependency>
+		<!-- MySql DB [Start] -->
+
+		<!-- Postgres DB [Start] -->
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
-			<version>9.3-1101-jdbc41</version>
+			<!-- <version>9.3-1101-jdbc41</version> -->
 		</dependency>
-		<dependency>
-			<groupId>commons-httpclient</groupId>
-			<artifactId>commons-httpclient</artifactId>
-			<version>3.1</version>
-		</dependency>
-		<dependency>
-			<groupId>com.google.code.gson</groupId>
-			<artifactId>gson</artifactId>
-		</dependency>
+		<!-- Postgres DB [End] -->
+
+		<!-- Apache Derby DB [Start] -->
+		<!-- <dependency> <groupId>org.apache.derby</groupId> <artifactId>derby</artifactId> 
+			<scope>runtime</scope> </dependency> -->
+		<!-- Apache Derby DB [End] -->
+
+		<!-- Caching [Start] -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-gemfire</artifactId>
 			<version>1.5.10.RELEASE</version>
-		</dependency>
-		<!-- <dependency> <groupId>org.springframework.boot</groupId> <artifactId> 
-			spring-boot-starter-data-elasticsearch </artifactId> </dependency> -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-batch</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>net.sf.ehcache</groupId>
@@ -106,17 +79,20 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-ehcache</artifactId>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.springframework.security.oauth/spring-security-oauth2 -->
+		<!-- Caching [End] -->
+
+		<!-- Oauth2.0 [Start] -->
 		<dependency>
 			<groupId>org.springframework.security.oauth</groupId>
 			<artifactId>spring-security-oauth2</artifactId>
-			<version>2.1.1.RELEASE</version>
+			<!-- <version>2.1.1.RELEASE</version> -->
 		</dependency>
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt</artifactId>
 			<version>0.7.0</version>
 		</dependency>
+		<!-- Oauth2.0 [End] -->
 	</dependencies>
 
 	<build>
@@ -127,5 +103,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>
