@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Implementation-Title: Skeleton-Project-Spring-Data-Mongo
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: operator20
+Implementation-Vendor-Id: com.skeleton
+Build-Jdk: 1.8.0_162
+Implementation-URL: http://projects.spring.io/spring-boot/skeleton-pro
+ ject-spring-data-mongo/
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+
