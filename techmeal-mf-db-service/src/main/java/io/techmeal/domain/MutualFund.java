@@ -34,13 +34,16 @@ public class MutualFund {
 	@Column(name = "purchase_amount")
 	private Double purchaseAmount;
 
+	@Column(name = "net_asset_value")
+	private Double nav;
+
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
 
 	public MutualFund() {
 	}
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -89,6 +92,14 @@ public class MutualFund {
 		this.purchaseAmount = purchaseAmount;
 	}
 
+	public Double getNav() {
+		return nav;
+	}
+
+	public void setNav(Double nav) {
+		this.nav = nav;
+	}
+
 	public User getUser() {
 		return user;
 	}
@@ -104,6 +115,7 @@ public class MutualFund {
 		private String description;
 		private Date purchaseDate;
 		private Double purchaseAmount;
+		private Double nav;
 		private User user;
 
 		public Builder id(Long id) {
@@ -136,6 +148,11 @@ public class MutualFund {
 			return this;
 		}
 
+		public Builder nav(Double nav) {
+			this.nav = nav;
+			return this;
+		}
+
 		public Builder user(User user) {
 			this.user = user;
 			return this;
@@ -153,13 +170,15 @@ public class MutualFund {
 		this.description = builder.description;
 		this.purchaseDate = builder.purchaseDate;
 		this.purchaseAmount = builder.purchaseAmount;
+		this.nav = builder.nav;
 		this.user = builder.user;
 	}
 
 	@Override
 	public String toString() {
 		return "MutualFund [id=" + id + ", schemeCode=" + schemeCode + ", name=" + name + ", description=" + description
-				+ ", purchaseDate=" + purchaseDate + ", purchaseAmount=" + purchaseAmount + ", user=" + user + "]";
+				+ ", purchaseDate=" + purchaseDate + ", purchaseAmount=" + purchaseAmount + ", nav=" + nav + ", user="
+				+ user + "]";
 	}
-
+	
 }

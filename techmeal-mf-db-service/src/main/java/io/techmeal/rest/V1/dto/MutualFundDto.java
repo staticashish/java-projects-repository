@@ -11,6 +11,7 @@ public class MutualFundDto {
 	private Date purchaseDate;
 	private Double purchaseAmount;
 	private UserDto user;
+	private Double nav;
 
 	public MutualFundDto() {
 	}
@@ -71,6 +72,14 @@ public class MutualFundDto {
 		this.user = user;
 	}
 
+	public Double getNav() {
+		return nav;
+	}
+
+	public void setNav(Double nav) {
+		this.nav = nav;
+	}
+
 	public static class Builder {
 		private Long id;
 		private String schemeCode;
@@ -79,6 +88,7 @@ public class MutualFundDto {
 		private Date purchaseDate;
 		private Double purchaseAmount;
 		private UserDto user;
+		private Double nav;
 
 		public Builder id(Long id) {
 			this.id = id;
@@ -115,6 +125,11 @@ public class MutualFundDto {
 			return this;
 		}
 
+		public Builder nav(Double nav) {
+			this.nav = nav;
+			return this;
+		}
+
 		public MutualFundDto build() {
 			return new MutualFundDto(this);
 		}
@@ -128,13 +143,14 @@ public class MutualFundDto {
 		this.purchaseDate = builder.purchaseDate;
 		this.purchaseAmount = builder.purchaseAmount;
 		this.user = builder.user;
+		this.nav = builder.nav;
 	}
 
 	@Override
 	public String toString() {
 		return "MutualFundDto [id=" + id + ", schemeCode=" + schemeCode + ", name=" + name + ", description="
 				+ description + ", purchaseDate=" + purchaseDate + ", purchaseAmount=" + purchaseAmount + ", user="
-				+ user + "]";
+				+ user + ", nav=" + nav + "]";
 	}
-
+	
 }
