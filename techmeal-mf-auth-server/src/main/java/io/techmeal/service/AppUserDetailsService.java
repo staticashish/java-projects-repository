@@ -48,7 +48,7 @@ public class AppUserDetailsService implements UserDetailsService{
 		int port = eurekaClient.getApplication(dbServiceUrl).getInstances().stream().findFirst().get().getPort();
 		//String dbService = discoveryClient.getInstances(dbServiceUrl).stream().findFirst().get().getUri().getPath();
 		String dbService = "http://"+ipAddr+":"+port; 
-		String userRequestUrl = dbService + "/user/{username}";
+		String userRequestUrl = "https://techmeal-mf-db-service.herokuapp.com/" + "/user/{username}";
 		
 		Map<String, String> params = new HashMap<String, String>();
 	    params.put("username", username);
