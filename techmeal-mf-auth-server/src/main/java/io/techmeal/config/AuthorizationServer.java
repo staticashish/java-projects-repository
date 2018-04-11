@@ -27,8 +27,8 @@ public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
 		clients.inMemory()
         	.withClient("client")
         	.secret("client")
-        	.authorizedGrantTypes("authorization_code")
-        	.scopes("user_info")
+        	.authorizedGrantTypes("authorization_code","password")
+        	.scopes("user_info","openid")
         	.autoApprove(true);
 	}
 	
