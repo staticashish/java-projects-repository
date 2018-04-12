@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/userinfo")
 public class UserController {
 
-	@GetMapping("/principal")
+	@GetMapping
 	public Principal user(Principal principal){
 		return principal;
 	}
