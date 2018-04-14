@@ -15,7 +15,7 @@ public class Oauth2Config extends WebSecurityConfigurerAdapter {
 			.disable()
 			.antMatcher("/**")
 			.authorizeRequests()
-			.antMatchers("/", "/login**")
+			.antMatchers("/", "/login**", "/swagger-resources/**")
 			.permitAll()
 			.anyRequest()
 			.authenticated();
