@@ -1,8 +1,6 @@
 package io.techmeal.config;
 
 import java.io.IOException;
-import java.net.URL;
-import java.net.URLClassLoader;
 import java.util.Arrays;
 
 import org.apache.commons.io.IOUtils;
@@ -18,7 +16,6 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.A
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
-import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
@@ -80,11 +77,11 @@ public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
 	    String publicKey = null;
 	    try {
 	        publicKey = IOUtils.toString(resource.getInputStream());
+	        System.out.println("**********************************"+publicKey);
 	    } catch (final IOException e) {
 	        throw new RuntimeException(e);
 	    }
 	    converter.setVerifierKey(publicKey);
-	    
 		
 		return converter;
 	}

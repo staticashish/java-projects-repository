@@ -3,6 +3,8 @@ package io.techmeal.rest.V1;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,5 +31,11 @@ public class AMFIController {
 	@PostMapping("/getDataByScheme")
 	ResponseEntity<DataResponseDto> getDataByScheme(@RequestBody DataRequestDto dataRequestDto){
 		return new ResponseEntity<DataResponseDto>(amfiService.getDataForMutualFund(dataRequestDto),HttpStatus.OK);
+	}
+	
+	@PreAuthorize("#oauth2.clientHasRole('ROLE_ADMIN')")
+	@GetMapping("/")
+	public String getHealth(){
+		return "hello";
 	}
 }
