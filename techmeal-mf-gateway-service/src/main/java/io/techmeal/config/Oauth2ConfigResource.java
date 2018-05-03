@@ -31,7 +31,9 @@ public class Oauth2ConfigResource extends ResourceServerConfigurerAdapter {
 	
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
-		http.sessionManagement()
+		http.csrf()
+				.disable()
+			.sessionManagement()
 					.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
 			.and()
 				.authorizeRequests()
