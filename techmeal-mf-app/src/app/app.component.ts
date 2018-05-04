@@ -1,3 +1,4 @@
+import { AuthService } from './services/auth.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,4 +8,20 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Techmeal Mutual fund Application';
+  username: String;
+  constructor(private authService: AuthService) {}
+
+  isAuthenticated() {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (currentUser && currentUser.token) {
+      this.username = currentUser.username;
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  logout() {
+    this.authService.logout();
+  }
 }

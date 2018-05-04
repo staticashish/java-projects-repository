@@ -1,16 +1,21 @@
-import { HttpHeaders } from '@angular/common/http';
-import { HttpParams } from '@angular/common/http';
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import {HttpErrorResponse} from '@angular/common/http';
+import {HttpResponse} from '@angular/common/http';
+import {HttpHeaders} from '@angular/common/http';
+import {HttpParams} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Router} from '@angular/router';
+import {Observable} from 'rxjs/Rx';
 import 'rxjs/Rx';
 
 @Injectable()
 export class AuthService {
 
-  constructor(private http: HttpClient, private router: Router) { }
+  loading = false;
+  constructor(private http: HttpClient, private router: Router) {}
+  error: HttpErrorResponse;
 
-  obtainAccessToken(loginData) {
+  obtainAccessToken(loginData): Observable<Object> {
     const params = new URLSearchParams();
     params.set('username', loginData.username);
     params.set('password', loginData.password);
@@ -19,17 +24,36 @@ export class AuthService {
 
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type':  'application/x-www-form-urlencoded; charset=utf-8',
+        'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
         'Authorization': 'Basic ' + btoa('client:client')
-    })
+      })
     };
 
-  const tokenUrl = 'http://techmeal-mf-gateway-service.herokuapp.com/gateway/auth/oauth/token';
-    // const tokenUrl = 'http://techmeal-mf-auth-server.herokuapp.com/auth/oauth/token';
-     this.http.post(tokenUrl, params.toString(), httpOptions )
-      .subscribe(
-        data => console.log(data),
-        err => alert('Invalid Credentials' + JSON.stringify(err)));
+    const tokenUrl = 'http://techmeal-mf-gateway-service.herokuapp.com/gateway/auth/oauth/token';
 
+    return this.http.post(tokenUrl, params.toString(), httpOptions)
+      .map((response: HttpResponse<Object>) => {
+        if (response) {
+          this.saveToken(response, loginData.username);
+          return true;
+        } else {
+          return false;
+        }
+      }).catch((e) => {
+        this.error = e;
+        return Observable.of(e);
+      });
   }
+
+  saveToken(token, username) {
+    const expireDate = new Date().getTime() + (1000 * token.expires_in);
+    localStorage.setItem('currentUser', JSON.stringify({username: username, token: token.access_token}));
+  }
+
+
+  logout() {
+    localStorage.removeItem('currentUser');
+    this.router.navigate(['/login']);
+  }
+
 }
