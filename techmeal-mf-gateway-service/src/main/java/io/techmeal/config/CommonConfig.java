@@ -55,7 +55,7 @@ public class CommonConfig {
 		return restTemplate;
 	}
 
-	@Bean
+/*	@Bean
     public CorsFilter corsFilter() {
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         final CorsConfiguration config = new CorsConfiguration();
@@ -71,5 +71,5 @@ public class CommonConfig {
         config.addAllowedMethod("PATCH");
         source.registerCorsConfiguration("*", config);
         return new CorsFilter(source);
-    }
+    }*/
 }
