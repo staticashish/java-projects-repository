@@ -1,20 +1,10 @@
 package io.techmeal.config;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.MediaType;
-import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.filter.CorsFilter;
 
 import com.google.common.base.Predicates;
 
@@ -46,30 +36,7 @@ public class CommonConfig {
 	// @LoadBalanced
 	@Bean
 	public RestTemplate restTemplate(RestTemplateBuilder builder) {
-		List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>();        
-		MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
-		converter.setSupportedMediaTypes(Arrays.asList(MediaType.ALL)); //Arrays.asList({MediaType.ALL})         
-		messageConverters.add(converter);
-		RestTemplate restTemplate = builder.build();
-		restTemplate.setMessageConverters(messageConverters);
-		return restTemplate;
+		return builder.build();
+		
 	}
-
-/*	@Bean
-    public CorsFilter corsFilter() {
-        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        final CorsConfiguration config = new CorsConfiguration();
-        config.setAllowCredentials(true);
-        config.addAllowedOrigin("*");
-        config.addAllowedHeader("*");
-        config.addAllowedMethod("OPTIONS");
-        config.addAllowedMethod("HEAD");
-        config.addAllowedMethod("GET");
-        config.addAllowedMethod("PUT");
-        config.addAllowedMethod("POST");
-        config.addAllowedMethod("DELETE");
-        config.addAllowedMethod("PATCH");
-        source.registerCorsConfiguration("*", config);
-        return new CorsFilter(source);
-    }*/
 }
