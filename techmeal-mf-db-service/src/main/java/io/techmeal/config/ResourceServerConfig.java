@@ -23,29 +23,17 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 @Configuration
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
-	private static final String[] AUTH_WHITELIST = {
-            "/v2/api-docs",
-            "/swagger-resources",
-            "/swagger-resources/**",
-            "/configuration/ui",
-            "/configuration/security",
-            "/swagger-ui.html",
-            "/webjars/**"
-    };
-	
 	@Autowired
-	FinServiceAccessTokenConverter finServiceAccessTokenConverter;
+	DbServiceAccessTokenConverter dbServiceAccessTokenConverter;
 
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
 		http.sessionManagement()
-				.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
+					.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
 			.and()
 				.authorizeRequests()
-					.antMatchers(AUTH_WHITELIST)
-						.permitAll()
 					.anyRequest()
-						.authenticated();
+					.authenticated();
 	}
 
 	@Override
@@ -70,7 +58,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	@Bean
 	public JwtAccessTokenConverter accessTokenConverter() {
 		JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-		converter.setAccessTokenConverter(finServiceAccessTokenConverter);
+		converter.setAccessTokenConverter(dbServiceAccessTokenConverter);
 		//for Resource Server
 		Resource resource = new ClassPathResource("public.txt");
 		String publicKey = null;

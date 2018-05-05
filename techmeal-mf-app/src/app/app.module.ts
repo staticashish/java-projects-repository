@@ -9,11 +9,13 @@ import { AuthService } from './services/auth.service';
 import { UserService } from './services/user.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { RegisterComponent } from './components/register/register.component';
 
 const appRoutes: Routes = [
 { path: '', pathMatch: 'full', redirectTo: 'home'},
   { path: 'home', component: HomeComponent},
-  { path: 'login', component: LoginComponent}
+  { path: 'login', component: LoginComponent},
+  { path: 'register', component: RegisterComponent}
 ];
 
 @NgModule({
@@ -21,6 +23,7 @@ const appRoutes: Routes = [
     AppComponent,
     HomeComponent,
     LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,

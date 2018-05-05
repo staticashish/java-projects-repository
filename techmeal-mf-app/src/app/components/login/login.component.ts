@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   loading = false;
-  error: string;
+  error: string = null;
   public loginData = {username: '', password: ''};
   public errorResponse: HttpErrorResponse;
   constructor(private authService: AuthService, private router: Router) {
@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
 
   login() {
       this.loading = true;
+      this.error = null;
       this.authService.obtainAccessToken(this.loginData)
         .subscribe(result => {
          if (result === true) {
@@ -28,6 +29,7 @@ export class LoginComponent implements OnInit {
            this.loading = false;
          } else {
            this.errorResponse = this.authService.error;
+           console.log(this.errorResponse);
            if (this.errorResponse.status === 401 || this.errorResponse.status === 400) {
              this.error = 'Invalid username or password';
            } else {

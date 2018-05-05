@@ -16,7 +16,6 @@ public class AppUserDetails extends UserDto implements UserDetails {
 		super(userDto);
 	}
 	
-	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		

@@ -33,7 +33,7 @@ public class AMFIController {
 		return new ResponseEntity<DataResponseDto>(amfiService.getDataForMutualFund(dataRequestDto),HttpStatus.OK);
 	}
 	
-	@PreAuthorize("#oauth2.clientHasRole('ROLE_ADMIN')")
+	//@PreAuthorize("#oauth2.clientHasRole('ROLE_ADMIN')")
 	@GetMapping("/")
 	public String getHealth(){
 		return "hello";

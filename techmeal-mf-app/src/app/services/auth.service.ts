@@ -7,6 +7,7 @@ import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
 import {Observable} from 'rxjs/Rx';
 import 'rxjs/Rx';
+import * as jwt_decode from 'jwt-decode';
 
 @Injectable()
 export class AuthService {
@@ -30,6 +31,7 @@ export class AuthService {
     };
 
     const tokenUrl = 'http://techmeal-mf-gateway-service.herokuapp.com/gateway/auth/oauth/token';
+    // const tokenUrl = 'http://localhost:8005/gateway/auth/oauth/token';
 
     return this.http.post(tokenUrl, params.toString(), httpOptions)
       .map((response: HttpResponse<Object>) => {
@@ -46,10 +48,18 @@ export class AuthService {
   }
 
   saveToken(token, username) {
-    const expireDate = new Date().getTime() + (1000 * token.expires_in);
-    localStorage.setItem('currentUser', JSON.stringify({username: username, token: token.access_token}));
+    const tokenInfo = this.getDecodedAccessToken(token.access_token);
+    localStorage.setItem('currentUser', JSON.stringify({username: username, token: token.access_token, role: tokenInfo.authorities[0]}));
+    console.log(localStorage.getItem('currentUser'));
   }
 
+  getDecodedAccessToken(token: string): any {
+    try {
+      return jwt_decode(token);
+    } catch (error) {
+      return null;
+    }
+  }
 
   logout() {
     localStorage.removeItem('currentUser');

@@ -43,13 +43,7 @@ public class CommonConfig {
 	// @LoadBalanced
 	@Bean
 	public RestTemplate restTemplate(RestTemplateBuilder builder) {
-		List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>();        
-		MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
-		converter.setSupportedMediaTypes(Arrays.asList(MediaType.ALL)); //Arrays.asList({MediaType.ALL})         
-		messageConverters.add(converter);
-		RestTemplate restTemplate = builder.build();
-		restTemplate.setMessageConverters(messageConverters);
-		return restTemplate;
+		return builder.build();
 	}
 
 }
