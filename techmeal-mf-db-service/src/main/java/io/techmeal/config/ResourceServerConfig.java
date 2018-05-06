@@ -32,8 +32,10 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 					.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
 			.and()
 				.authorizeRequests()
+					.antMatchers("/user/create")
+						.permitAll()
 					.anyRequest()
-					.authenticated();
+						.authenticated();
 	}
 
 	@Override
