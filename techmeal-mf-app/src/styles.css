@@ -13,3 +13,25 @@
     from { transform: scale(1) rotate(0deg);}
     to { transform: scale(1) rotate(360deg);}
 }
+
+.centered-form{
+	margin-top: 100px;
+}
+
+.centered-form .panel{
+	background: #dde8e8;
+	box-shadow: rgba(0, 0, 0, 0.3) 15px 15px 15px;
+}
+
+.navbar-inverse {
+    background-color: #dde8e8;
+    border-color: #7fa0a0;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+    color: #087986;
+}
+
+.navbar-inverse .navbar-brand {
+    color: #087986;
+}

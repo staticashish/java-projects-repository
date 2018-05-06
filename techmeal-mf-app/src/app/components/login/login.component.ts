@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
   error: string = null;
   public loginData = {username: '', password: ''};
   public errorResponse: HttpErrorResponse;
+
   constructor(private authService: AuthService, private router: Router) {
   }
 

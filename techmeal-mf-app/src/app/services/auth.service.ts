@@ -30,7 +30,7 @@ export class AuthService {
       })
     };
 
-    const tokenUrl = 'http://techmeal-mf-gateway-service.herokuapp.com/gateway/auth/oauth/token';
+    const tokenUrl = 'https://techmeal-mf-gateway-service.herokuapp.com/gateway/auth/oauth/token';
     // const tokenUrl = 'http://localhost:8005/gateway/auth/oauth/token';
 
     return this.http.post(tokenUrl, params.toString(), httpOptions)
@@ -66,4 +66,19 @@ export class AuthService {
     this.router.navigate(['/login']);
   }
 
+  public getToken(): string {
+    if (localStorage.getItem('currentUser')) {
+      return JSON.parse(localStorage.getItem('currentUser')).token;
+    } else {
+      return '';
+    }
+  }
+
+  public getRole(): string {
+    if (localStorage.getItem('currentUser')) {
+      return JSON.parse(localStorage.getItem('currentUser')).role;
+    } else {
+      return '';
+    }
+  }
 }

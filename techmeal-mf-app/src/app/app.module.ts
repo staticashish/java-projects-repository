@@ -10,12 +10,18 @@ import { UserService } from './services/user.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { RegisterComponent } from './components/register/register.component';
+import { AuthInterceptorService } from './interceptors/auth-interceptor.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { RoleListComponent } from './components/role/role-list/role-list.component';
+import { RoleMasterComponent } from './components/role/role-master/role-master.component';
+import { RoleService } from './services/role.service';
 
 const appRoutes: Routes = [
 { path: '', pathMatch: 'full', redirectTo: 'home'},
   { path: 'home', component: HomeComponent},
   { path: 'login', component: LoginComponent},
-  { path: 'register', component: RegisterComponent}
+  { path: 'register', component: RegisterComponent},
+  { path: 'role', component: RoleMasterComponent}
 ];
 
 @NgModule({
@@ -24,6 +30,8 @@ const appRoutes: Routes = [
     HomeComponent,
     LoginComponent,
     RegisterComponent,
+    RoleListComponent,
+    RoleMasterComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,7 +41,13 @@ const appRoutes: Routes = [
   ],
   providers: [
     AuthService,
-    UserService
+    UserService,
+    RoleService,
+    {
+        provide: HTTP_INTERCEPTORS,
+        useClass: AuthInterceptorService,
+        multi: true,
+    }
   ],
   bootstrap: [AppComponent]
 })
