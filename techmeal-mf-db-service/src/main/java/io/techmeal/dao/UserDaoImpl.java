@@ -28,4 +28,9 @@ public class UserDaoImpl implements UserDao {
 	public void delete(User user) {
 		userRepository.save(user);
 	}
+
+	@Override
+	public List<User> getAllUsers() {
+		return (List<User>) userRepository.findAll();
+	}
 }

@@ -3,6 +3,8 @@ package io.techmeal.service;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -61,4 +63,16 @@ public class UserServiceImpl implements UserService {
 			throw new EntityExistException("user already exist with username : [ "+userDto.getUsername()+" ]");
 		}
 	}
+
+	@Override
+	public List<UserDto> getAllUsers() {
+		List<User> users = userDao.getAllUsers();
+		
+		List<UserDto> userDtos = users.stream()
+				.map(u -> applicationModelMapper.convertUserToUserDto(u))
+				.collect(Collectors.toList());
+		return userDtos;
+	}
+	
+	
 }

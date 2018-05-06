@@ -1,5 +1,7 @@
 package io.techmeal.rest.V1;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +26,12 @@ public class UserController {
 	ResponseEntity<UserDto> getUser(@RequestBody @PathVariable("username") String username){
 		UserDto userDto = userService.getUser(username);
 		return new ResponseEntity<UserDto>(userDto, HttpStatus.OK);
+	}
+	
+	@GetMapping("/all")
+	ResponseEntity<List<UserDto>> getAllUser(){
+		List<UserDto> userDtos = userService.getAllUsers();
+		return new ResponseEntity<List<UserDto>>(userDtos, HttpStatus.OK);
 	}
 	
 	@PostMapping("/create")
