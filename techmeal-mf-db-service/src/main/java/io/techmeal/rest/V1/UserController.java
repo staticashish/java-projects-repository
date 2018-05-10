@@ -40,4 +40,10 @@ public class UserController {
 		return new ResponseEntity<UserDto>(userDto, HttpStatus.OK);
 	}
 	
+	@PostMapping("/edit")
+	ResponseEntity<UserDto> editUser(@RequestBody UserDto userDto){
+		userDto = userService.editUser(userDto);
+		return new ResponseEntity<UserDto>(userDto, HttpStatus.OK);
+	}
+	
 }

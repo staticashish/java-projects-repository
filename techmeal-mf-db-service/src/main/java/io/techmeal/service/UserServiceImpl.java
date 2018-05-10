@@ -73,6 +73,17 @@ public class UserServiceImpl implements UserService {
 				.collect(Collectors.toList());
 		return userDtos;
 	}
-	
+
+	@Override
+	public UserDto editUser(UserDto userDto) {
+		List<User> users = userDao.getUserByUsername(userDto.getUsername());
+		if(!users.isEmpty()){
+			User editedUser = applicationModelMapper.convertUserDtoToUser(userDto);
+			User user = userDao.save(editedUser);
+			return applicationModelMapper.convertUserToUserDto(user);
+		} else {
+			throw new EntityExistException("user does not exist with username : [ "+userDto.getUsername()+" ]");
+		}
+	}
 	
 }
