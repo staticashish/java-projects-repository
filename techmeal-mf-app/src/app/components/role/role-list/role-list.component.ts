@@ -1,3 +1,4 @@
+import { Role } from '../../../common/dto/role';
 import { RoleService } from '../../../services/role.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -7,8 +8,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./role-list.component.css']
 })
 export class RoleListComponent implements OnInit {
-
-  public roles: Array<{id: number, name: string}>;
+  public dataLoaded = false;
+  public roles: Array<Role>;
   constructor(private roleService: RoleService) { }
 
   ngOnInit() {
@@ -16,9 +17,10 @@ export class RoleListComponent implements OnInit {
   }
 
   getRoles() {
-    this.roleService.getRoles().subscribe((result: Array<{id: number, name: string}>) => {
+    this.roleService.getRoles().subscribe((result: Array<Role>) => {
         if (result != null) {
            this.roles = result;
+            this.dataLoaded = true;
          } else {
            this.roles = null;
          }

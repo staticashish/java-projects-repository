@@ -12,10 +12,14 @@
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
 				<li *ngIf="isAuthenticated() && userRole === 'ROLE_ADMIN'"><a routerLinkActive="active"
-					routerLink="/role">Role</a></li>
+					routerLink="/role">Role</a>
+				</li>
+				<li *ngIf="isAuthenticated() && userRole === 'ROLE_ADMIN'"><a routerLinkActive="active"
+					routerLink="/user">User</a>
+				</li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li *ngIf="!isAuthenticated()"><a routerLinkActive="active"
+				<li *ngIf="!isAuthenticated()" data-toggle="tooltip"><a routerLinkActive="active"
 					routerLink="/register"><span class="glyphicon glyphicon-user"></span>
 						Register</a></li>
 				<li *ngIf="!isAuthenticated()"><a routerLinkActive="active"

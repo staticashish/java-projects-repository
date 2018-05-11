@@ -1,0 +1,34 @@
+<div *ngIf="dataLoaded">
+	<table class="table table-striped table-hover table-bordered">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>Name</th>
+				<th>Email</th>
+				<th>Username</th>
+				<th>Roles</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let user of userList; let row = index">
+				<td>{{ row + 1 }}</td>
+				<td>{{ user.name }}</td>
+				<td>{{ user.email }}</td>
+				<td>{{ user.username }}</td>
+				<td><span *ngFor="let role of user.roles">
+						<span>{{ role.name }}&nbsp;</span>
+					</span>
+				</td>
+				<td>
+					<a (click)="editUser(user)" class="btn btn-default btn-sm purple">
+						<span class="glyphicon glyphicon-edit"></span> Edit
+					</a> 
+					<a (click)="deleteUser(user)" class="btn btn-default btn-sm red">
+						<span class="glyphicon glyphicon-trash"></span> Delete
+					</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

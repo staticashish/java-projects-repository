@@ -1,3 +1,4 @@
+import { AppConstant } from '../common/appconstant';
 import {HttpErrorResponse} from '@angular/common/http';
 import {HttpResponse} from '@angular/common/http';
 import {HttpHeaders} from '@angular/common/http';
@@ -30,10 +31,9 @@ export class AuthService {
       })
     };
 
-    const tokenUrl = 'https://techmeal-mf-gateway-service.herokuapp.com/gateway/auth/oauth/token';
     // const tokenUrl = 'http://localhost:8005/gateway/auth/oauth/token';
 
-    return this.http.post(tokenUrl, params.toString(), httpOptions)
+    return this.http.post(AppConstant.TOKEN_URL, params.toString(), httpOptions)
       .map((response: HttpResponse<Object>) => {
         if (response) {
           this.saveToken(response, loginData.username);

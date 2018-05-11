@@ -1,3 +1,4 @@
+import { RegistrationData } from '../../common/dto/registrationdata';
 import { UserService } from '../../services/user.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { HttpResponse } from '@angular/common/http';
@@ -14,7 +15,7 @@ export class RegisterComponent implements OnInit {
   public loading = false;
   public errorResponse: HttpErrorResponse;
   public error: string;
-  public registerData = {name: '', email: '', username: '', password: ''};
+  public registerData = new RegistrationData();
 
   constructor(private userService: UserService, private router: Router) { }
 

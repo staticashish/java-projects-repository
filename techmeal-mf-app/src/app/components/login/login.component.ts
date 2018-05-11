@@ -1,3 +1,4 @@
+import { LoginData } from '../../common/dto/logindata';
 import { AuthService } from '../../services/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   loading = false;
   error: string = null;
-  public loginData = {username: '', password: ''};
+  public loginData = new LoginData();
   public errorResponse: HttpErrorResponse;
 
   constructor(private authService: AuthService, private router: Router) {
@@ -23,6 +24,7 @@ export class LoginComponent implements OnInit {
   login() {
       this.loading = true;
       this.error = null;
+      console.log(this.loginData);
       this.authService.obtainAccessToken(this.loginData)
         .subscribe(result => {
          if (result === true) {

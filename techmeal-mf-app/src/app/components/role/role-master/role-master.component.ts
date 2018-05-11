@@ -21,6 +21,9 @@ export class RoleMasterComponent implements OnInit {
   constructor(private roleService: RoleService, private router: Router) { }
 
   ngOnInit() {
+    if (!localStorage.getItem('currentUser')) {
+      this.router.navigate(['login']);
+    }
   }
 
   create() {

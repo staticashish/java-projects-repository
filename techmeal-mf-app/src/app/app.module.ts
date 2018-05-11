@@ -15,13 +15,16 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RoleListComponent } from './components/role/role-list/role-list.component';
 import { RoleMasterComponent } from './components/role/role-master/role-master.component';
 import { RoleService } from './services/role.service';
+import { UserMasterComponent } from './components/user/user-master/user-master.component';
+import { UserListComponent } from './components/user/user-list/user-list.component';
 
 const appRoutes: Routes = [
 { path: '', pathMatch: 'full', redirectTo: 'home'},
   { path: 'home', component: HomeComponent},
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},
-  { path: 'role', component: RoleMasterComponent}
+  { path: 'role', component: RoleMasterComponent},
+  { path: 'user', component: UserMasterComponent}
 ];
 
 @NgModule({
@@ -32,6 +35,8 @@ const appRoutes: Routes = [
     RegisterComponent,
     RoleListComponent,
     RoleMasterComponent,
+    UserMasterComponent,
+    UserListComponent,
   ],
   imports: [
     BrowserModule,
