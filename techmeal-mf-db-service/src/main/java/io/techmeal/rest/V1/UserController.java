@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -43,6 +44,12 @@ public class UserController {
 	@PostMapping("/edit")
 	ResponseEntity<UserDto> editUser(@RequestBody UserDto userDto){
 		userDto = userService.editUser(userDto);
+		return new ResponseEntity<UserDto>(userDto, HttpStatus.OK);
+	}
+	
+	@PutMapping("/delete")
+	ResponseEntity<UserDto> deleteUser(@RequestBody UserDto userDto){
+		userService.deleteUser(userDto);
 		return new ResponseEntity<UserDto>(userDto, HttpStatus.OK);
 	}
 	

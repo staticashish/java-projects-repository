@@ -85,5 +85,13 @@ public class UserServiceImpl implements UserService {
 			throw new EntityExistException("user does not exist with username : [ "+userDto.getUsername()+" ]");
 		}
 	}
+
+	@Override
+	public void deleteUser(UserDto userDto) {
+		List<User> users = userDao.getUserByUsername(userDto.getUsername());
+		for(User user: users){
+			userDao.delete(user);
+		}
+	}
 	
 }
