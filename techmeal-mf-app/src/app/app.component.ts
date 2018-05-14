@@ -1,4 +1,5 @@
 import { AuthService } from './services/auth.service';
+import { LoadingService } from './services/loading.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -10,7 +11,12 @@ export class AppComponent {
   public title = 'Techmeal Mutual fund Application';
   public username: string;
   public userRole: string;
-  constructor(private authService: AuthService) {}
+  public loading = false;
+  constructor(private authService: AuthService, private loadingService: LoadingService) {
+    loadingService
+      .onLoadingChanged
+      .subscribe(isLoading => this.loading = isLoading);
+  }
 
   isAuthenticated() {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));

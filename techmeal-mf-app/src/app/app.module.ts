@@ -17,6 +17,7 @@ import { RoleMasterComponent } from './components/role/role-master/role-master.c
 import { RoleService } from './services/role.service';
 import { UserMasterComponent } from './components/user/user-master/user-master.component';
 import { UserListComponent } from './components/user/user-list/user-list.component';
+import { LoadingService } from './services/loading.service';
 
 const appRoutes: Routes = [
 { path: '', pathMatch: 'full', redirectTo: 'home'},
@@ -48,6 +49,7 @@ const appRoutes: Routes = [
     AuthService,
     UserService,
     RoleService,
+    LoadingService,
     {
         provide: HTTP_INTERCEPTORS,
         useClass: AuthInterceptorService,

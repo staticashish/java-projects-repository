@@ -15,7 +15,6 @@ import { Router } from '@angular/router';
 })
 export class UserMasterComponent implements OnInit {
 
-  public loading = false;
   public errorResponse: HttpErrorResponse;
   public error: string;
   public success: string = null;
@@ -24,6 +23,7 @@ export class UserMasterComponent implements OnInit {
   public roles: Array<Role>;
   public editedUserRole: string;
   public currentRole = new Role();
+  public roleArray: Array<Role>;
 
   @ViewChild(UserListComponent) userList;
 
@@ -37,41 +37,41 @@ export class UserMasterComponent implements OnInit {
   }
 
   onChangeObj(newObj) {
-    console.log(JSON.stringify(newObj));
     this.currentRole = newObj;
   }
   createOrEdit() {
-    this.loading = true;
     this.error = null;
     this.success = null;
-    this.user.roles.pop();
-    this.user.roles.push(this.currentRole);
+    if (this.user.roles !== undefined) {
+      this.user.roles.pop();
+      this.user.roles.push(this.currentRole);
+    } else {
+      this.roleArray = [this.currentRole];
+      this.user.roles = this.roleArray;
+    }
+
     if (this.isEdit) {
       this.userService.editUser(this.user)
               .subscribe(result => {
                   if (result === true) {
-                     this.loading = false;
                      this.success = 'User edited !!!!';
                      this.userList.getUsers();
                    } else {
                      this.errorResponse = this.userService.error;
                      console.log(this.errorResponse);
                      this.error = 'Something went wrong !!!';
-                     this.loading = false;
                    }
               });
     } else {
       this.userService.createUser(this.user)
         .subscribe(result => {
             if (result === true) {
-               this.loading = false;
                this.success = 'User created !!!!';
                this.userList.getUsers();
              } else {
                this.errorResponse = this.userService.error;
                console.log(this.errorResponse);
                this.error = 'Something went wrong !!!';
-               this.loading = false;
              }
         });
     }

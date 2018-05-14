@@ -24,7 +24,6 @@ export class LoginComponent implements OnInit {
   login() {
       this.loading = true;
       this.error = null;
-      console.log(this.loginData);
       this.authService.obtainAccessToken(this.loginData)
         .subscribe(result => {
          if (result === true) {

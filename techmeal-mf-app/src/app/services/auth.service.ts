@@ -50,7 +50,6 @@ export class AuthService {
   saveToken(token, username) {
     const tokenInfo = this.getDecodedAccessToken(token.access_token);
     localStorage.setItem('currentUser', JSON.stringify({username: username, token: token.access_token, role: tokenInfo.authorities[0]}));
-    console.log(localStorage.getItem('currentUser'));
   }
 
   getDecodedAccessToken(token: string): any {

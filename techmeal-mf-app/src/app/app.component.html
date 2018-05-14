@@ -37,5 +37,8 @@
 </nav>
 
 <div class='container'>
-	<router-outlet></router-outlet>
+	<router-outlet>
+	<div *ngIf="loading" id="myOverlay" class="overlay"></div>
+	<div *ngIf="loading" id="loadingGIF" class ="loader"></div>
+	</router-outlet>
 </div>

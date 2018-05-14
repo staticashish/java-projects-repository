@@ -11,7 +11,6 @@ import { Router } from '@angular/router';
 })
 export class RoleMasterComponent implements OnInit {
 
-  public loading = false;
   public roleData = {name: ''};
   public error: string = null;
   public success: string = null;
@@ -27,13 +26,11 @@ export class RoleMasterComponent implements OnInit {
   }
 
   create() {
-    this.loading = true;
     this.error = null;
     this.success = null;
     this.roleService.createRole(this.roleData)
       .subscribe(result => {
         if (result != null) {
-           this.loading = false;
            this.success = 'New Role Created !!!';
            this.roleList.getRoles();
          } else {
@@ -44,7 +41,6 @@ export class RoleMasterComponent implements OnInit {
            } else {
              this.error = 'Something went wrong !!!';
            }
-           this.loading = false;
          }
       });
   }
